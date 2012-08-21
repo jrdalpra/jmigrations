@@ -3,6 +3,7 @@ package br.com.wolkenapps.jmigrations.dsl.extentions;
 import br.com.wolkenapps.jmigrations.dsl.Options;
 import br.com.wolkenapps.jmigrations.dsl.model.column.DatabaseColumn;
 import br.com.wolkenapps.jmigrations.dsl.model.column.types.DatabaseColumnType;
+import br.com.wolkenapps.jmigrations.dsl.model.commands.DropTable;
 
 public class Extensions {
 
@@ -21,6 +22,18 @@ public class Extensions {
 
         public static DatabaseColumn length(DatabaseColumn column, Number length) {
             return column.withOptions(Options.length(length));
+        }
+
+    }
+
+    public static class DropTable_ {
+
+        public static DropTable ifExists(DropTable command) {
+            return command.withOptions(Options.DropTableOptions.ifExists());
+        }
+
+        public static DropTable cascade(DropTable command) {
+            return command.withOptions(Options.DropTableOptions.cascade());
         }
 
     }
