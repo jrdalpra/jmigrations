@@ -1,24 +1,17 @@
 package br.com.wolkenapps.jmigrations.dsl.model.table;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import br.com.wolkenapps.jmigrations.dsl.model.table.options.TableOption;
+import br.com.wolkenapps.jmigrations.dsl.model.DatabaseObject;
 
 @RequiredArgsConstructor
-public class Table {
+public class Table implements DatabaseObject {
 
     @Getter
-    private final String     name;
+    private final String name;
 
-    private Set<TableOption> options = new HashSet<>();
-
-    public Table withOptions(TableOption... options) {
-        this.options.addAll(Arrays.asList(options));
-        return this;
+    public Table() {
+        this(null);
     }
 
 }

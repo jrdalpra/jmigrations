@@ -1,32 +1,38 @@
-package br.com.wolkenapps.jmigrations.dsl.model.commands;
+package br.com.wolkenapps.jmigrations.dsl.model.column;
 
-import java.util.Arrays;
+import static java.util.Arrays.asList;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 import lombok.Getter;
-import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import br.com.wolkenapps.jmigrations.dsl.model.column.types.ColumnType;
 import br.com.wolkenapps.jmigrations.dsl.model.commons.options.DatabaseObjectOption;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseCascade;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseIfExists;
+import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseNotNull;
 import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.HasOptions;
-import br.com.wolkenapps.jmigrations.dsl.model.table.Table;
 
-public class DropTable implements DatabaseCommand, HasOptions<DropTable>, CanUseIfExists, CanUseCascade {
+@RequiredArgsConstructor
+public class Column implements HasOptions<Column>, CanUseNotNull {
 
     @Getter
-    private final Table               table;
+    private final String              name;
+
+    @Setter
+    @Getter
+    private ColumnType                type;
 
     private Set<DatabaseObjectOption> options = new HashSet<>();
 
-    public DropTable(String name) {
-        this.table = new Table(name);
+    public Column withOptions(DatabaseObjectOption... options) {
+        this.options.addAll(asList(options));
+        return this;
     }
 
-    @Override
-    public DropTable withOptions(DatabaseObjectOption... options) {
-        this.options.addAll(Arrays.asList(options));
+    public Column type(ColumnType type) {
+        setType(type);
         return this;
     }
 

@@ -1,7 +1,11 @@
-import static br.com.wolkenapps.jmigrations.dsl.Commands.*;
-import static br.com.wolkenapps.jmigrations.dsl.Models.*;
-import static br.com.wolkenapps.jmigrations.dsl.Options.*;
-import static br.com.wolkenapps.jmigrations.dsl.Options.DropTableOptions.*;
+import static br.com.wolkenapps.jmigrations.dsl.Commands.createTable;
+import static br.com.wolkenapps.jmigrations.dsl.Commands.dropTable;
+import static br.com.wolkenapps.jmigrations.dsl.Models.column;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Columns.length;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Columns.primaryKeyColumn;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Commons.cascade;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Commons.ifExists;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Commons.notNull;
 import static br.com.wolkenapps.jmigrations.dsl.Types.long_;
 import static br.com.wolkenapps.jmigrations.dsl.Types.string;
 import lombok.experimental.ExtensionMethod;
@@ -16,9 +20,9 @@ public class TesteMigrationDSL {
         @Override
         public DatabaseCommand[] up() {
             return new DatabaseCommand[] {
-                    createTable("user").columns(column("id").type(long_()).withOptions(notNull(), primaryKey()),
+                    createTable("user").columns(column("id").type(long_()).withOptions(notNull(), primaryKeyColumn()),
                                                 column("login").type(string()).withOptions(notNull(), length(100)),
-                                                column("passwd").type(string()).withOptions(notNull()))
+                                                column("passwd").type(string()).withOptions(notNull(), length(20)))
             };
         }
 
@@ -30,15 +34,15 @@ public class TesteMigrationDSL {
         }
     }
 
-    @ExtensionMethod({ Extensions.Commons.class, Extensions.Options_.class, Extensions.DropTable_.class })
+    @ExtensionMethod({ Extensions.Commons.class, Extensions.Options_.class })
     private static class TesteMigrationWithExtensionMethods implements Migration {
 
         @Override
         public DatabaseCommand[] up() {
             return new DatabaseCommand[] {
-                    createTable("user").columns("id".as(long_()).notNull(),
-                                                "login".as(string()).notNull().length(100),
-                                                "passwd".as(string()).notNull())
+                    createTable("user").ifNotExists().columns("id".as(long_()).notNull().primaryKey(),
+                                                              "login".as(string()).notNull().length(100),
+                                                              "passwd".as(string()).notNull().length(20))
             };
         }
 

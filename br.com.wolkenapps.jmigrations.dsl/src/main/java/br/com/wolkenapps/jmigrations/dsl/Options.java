@@ -3,37 +3,43 @@ package br.com.wolkenapps.jmigrations.dsl;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import br.com.wolkenapps.jmigrations.dsl.model.column.options.Length;
-import br.com.wolkenapps.jmigrations.dsl.model.column.options.NotNull;
-import br.com.wolkenapps.jmigrations.dsl.model.column.options.PrimaryKey;
-import br.com.wolkenapps.jmigrations.dsl.model.commands.options.droptable.Cascade;
-import br.com.wolkenapps.jmigrations.dsl.model.commands.options.droptable.IfExists;
+import br.com.wolkenapps.jmigrations.dsl.model.column.options.PrimaryKeyColumn;
+import br.com.wolkenapps.jmigrations.dsl.model.commons.options.Cascade;
+import br.com.wolkenapps.jmigrations.dsl.model.commons.options.IfExists;
+import br.com.wolkenapps.jmigrations.dsl.model.commons.options.IfNotExists;
+import br.com.wolkenapps.jmigrations.dsl.model.commons.options.NotNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Options {
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
-    public static final class DropTableOptions {
+    public static class Commons {
+        public static Cascade cascade() {
+            return new Cascade();
+        }
 
         public static IfExists ifExists() {
             return new IfExists();
         }
 
-        public static Cascade cascade() {
-            return new Cascade();
+        public static NotNull notNull() {
+            return new NotNull();
         }
 
+        public static IfNotExists ifNotExists() {
+            return new IfNotExists();
+        }
     }
 
-    public static NotNull notNull() {
-        return new NotNull();
-    }
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Columns {
+        public static Length length(Number length) {
+            return new Length(length);
+        }
 
-    public static Length length(Number length) {
-        return new Length(length);
-    }
-
-    public static PrimaryKey primaryKey() {
-        return new PrimaryKey();
+        public static PrimaryKeyColumn primaryKeyColumn() {
+            return new PrimaryKeyColumn();
+        }
     }
 
 }
