@@ -4,6 +4,7 @@ import static br.com.wolkenapps.jmigrations.dsl.Models.*;
 import static br.com.wolkenapps.jmigrations.dsl.Options.Columns.*;
 import static br.com.wolkenapps.jmigrations.dsl.Options.Commons.*;
 import static br.com.wolkenapps.jmigrations.dsl.Options.Tables.*;
+import static br.com.wolkenapps.jmigrations.dsl.Options.Sequences.*;
 import static br.com.wolkenapps.jmigrations.dsl.Types.*;
 import lombok.experimental.ExtensionMethod;
 import br.com.wolkenapps.jmigrations.api.*;
@@ -92,9 +93,8 @@ public class IdeasForMigrationDSL {
         create(index("idx_user_id_login").unique().on("user").columns("id", "login"));
 
         create(sequence("seq_users").startWith(1).incrementBy(1).maxValue(999999));
-        
+
         create(foreignKey("fk_teste").table("some_table").column("id").references(table("other_table").column("column_x")));
-        
 
         /* TODO drop variations */
         drop(sequence("seq_users")).ifExists();
@@ -102,7 +102,7 @@ public class IdeasForMigrationDSL {
         ifExists(drop(table("user"))); // same as drop(table("user")).ifExists();
         drop(index("idx_some_index")).ifExists();
         drop(foreignKey("fk_some_fk")).ifExists();
-        
+
         /* TODO alter variations * */
         alter(table("user"), drop(column("id")));
         alter(table("user"), drop(primaryKey("id")));
@@ -112,7 +112,7 @@ public class IdeasForMigrationDSL {
         alter(table("user"), add(primaryKey("id")));
         alter(table("user"), add(index("idx_test").unique().columns("c1", "c2")));
         alter(table("user"), add(foreignKey("fk_company").references(table("company").column("id"))));
-        
+
         alter(table("user"), change(column("login").type(long_())));
 
         alter(table("user"), rename(column("login"), column("user")));
@@ -120,6 +120,7 @@ public class IdeasForMigrationDSL {
         alter(table("user"), renameColumnFromTo("login", "user"));
 
         alter(sequence("seq_users"), renameSelfTo("seq_user"));
+        alter(sequence("seq_users"), change(options(min(10), max(99999999999999l))));
 
         alter(index("idx_useful"), renameSelfTo("idx_not_so_useful"));
 

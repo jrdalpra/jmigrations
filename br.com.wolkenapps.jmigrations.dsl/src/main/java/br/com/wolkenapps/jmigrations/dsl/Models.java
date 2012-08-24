@@ -39,4 +39,8 @@ public final class Models {
         return new ForeignKey(name);
     }
 
+    public static Option[] options(Option... options) {
+        return options;
+    }
+
 }

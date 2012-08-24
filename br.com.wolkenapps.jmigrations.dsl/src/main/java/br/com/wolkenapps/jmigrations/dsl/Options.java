@@ -12,6 +12,7 @@ import br.com.wolkenapps.jmigrations.model.domain.Table;
 import br.com.wolkenapps.jmigrations.model.domain.columns.options.Length;
 import br.com.wolkenapps.jmigrations.model.domain.columns.options.NotNull;
 import br.com.wolkenapps.jmigrations.model.domain.foreignkeys.options.References;
+import br.com.wolkenapps.jmigrations.model.domain.sequences.options.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Options {
@@ -82,6 +83,23 @@ public class Options {
         public static PrimaryKey primaryKey(String... columns) {
             return new PrimaryKey(columns);
         }
+    }
+
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static class Sequences {
+
+        public static MaxValue max(Number value) {
+            return new MaxValue(value);
+        }
+
+        public static MinValue min(Number value) {
+            return new MinValue(value);
+        }
+
+        public static StartWith startWith(Number value) {
+            return new StartWith(value);
+        }
+
     }
 
 }
