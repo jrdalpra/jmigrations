@@ -12,21 +12,21 @@ import static br.com.wolkenapps.jmigrations.dsl.Types.*;
 import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
 import br.com.wolkenapps.jmigrations.api.Migration;
 
-    public class CreateUserTable implements Migration {
-    
-        @Override
-        public DatabaseCommand[] up() {
-            return new DatabaseCommand[] {
-                    create(table("user").columns(column("id").type(long_()).asPrimaryKey(),
-                                                 column("login").type(string()).notNull().length(100),
-                                                 column("password").type(string()).notNull().length(20)))
-            };
-        }
-    
-        @Override
-        public DatabaseCommand[] down() {
-            return new DatabaseCommand[] {
-                    drop(table("users"))
-            };
-        }
+public class CreateUserTable implements Migration {
+
+    @Override
+    public DatabaseCommand[] up() {
+        return new DatabaseCommand[] {
+                create(table("user").columns(column("id").type(long_()).asPrimaryKey(),
+                                             column("login").type(string()).notNull().length(100),
+                                             column("password").type(string()).notNull().length(20)))
+        };
     }
+
+    @Override
+    public DatabaseCommand[] down() {
+        return new DatabaseCommand[] {
+                drop(table("users"))
+        };
+    }
+}
