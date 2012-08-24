@@ -12,6 +12,7 @@ import static br.com.wolkenapps.jmigrations.dsl.Types.*;
 import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
 import br.com.wolkenapps.jmigrations.api.Migration;
 
+@SuppressWarnings("unused")
 public class CreateUserTable implements Migration {
 
     @Override
