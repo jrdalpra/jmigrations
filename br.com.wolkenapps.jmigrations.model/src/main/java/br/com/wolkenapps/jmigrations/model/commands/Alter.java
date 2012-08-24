@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.ExtensionMethod;
 import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
+import br.com.wolkenapps.jmigrations.model.commands.alter.AlterAction;
 import br.com.wolkenapps.jmigrations.model.commons.stereotype.HasOptions;
 import br.com.wolkenapps.jmigrations.model.domain.Option;
 

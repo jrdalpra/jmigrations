@@ -1,4 +1,4 @@
-package br.com.wolkenapps.jmigrations.model.commands;
+package br.com.wolkenapps.jmigrations.model.commands.alter;
 
 import br.com.wolkenapps.jmigrations.model.commons.stereotype.HasOptions;
 
