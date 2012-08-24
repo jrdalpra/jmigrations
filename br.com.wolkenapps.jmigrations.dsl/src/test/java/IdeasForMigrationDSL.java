@@ -61,6 +61,10 @@ public class IdeasForMigrationDSL {
         // update("user").set("login", "teste").where("id", Is.greaterThan(10));
         // update("user").set("senha", "").where("id", Is.in()); // ??
 
+        // deleteFrom("user").where("id",equals(),1)
+        //                   .and("login",startsWith(),"admin")
+        //                   .or("login",endsWith(),"user")
+        
         // TODO think: a migration is unique by data / time / user ... but we can have several date/time locales
         // or diferente migration's name conventions ...
         // CreateUsers_20120823_115023_jrdalpra and
