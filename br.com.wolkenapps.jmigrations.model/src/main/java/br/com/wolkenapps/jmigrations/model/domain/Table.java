@@ -8,6 +8,7 @@ import lombok.experimental.ExtensionMethod;
 import br.com.wolkenapps.jmigrations.model.commands.alter.actions.stereotypes.CanBeRenamed;
 import br.com.wolkenapps.jmigrations.model.commons.options.PrimaryKey;
 import br.com.wolkenapps.jmigrations.model.commons.stereotype.HasOptions;
+import br.com.wolkenapps.jmigrations.model.domain.foreignkeys.options.References;
 
 @RequiredArgsConstructor
 @ExtensionMethod({ Arrays.class })
@@ -58,12 +59,45 @@ public class Table implements HasOptions<Table>, CanBeRenamed {
         return this;
     }
 
+    public Table columns(String... columns) {
+        this.columns.addAll(Column.Utils.createBasedOn(columns));
+        return this;
+    }
+
+    public Table column(Column column) {
+        return this.columns(column);
+    }
+
+    public Table column(String column) {
+        return this.columns(column);
+    }
+
     public Table primaryKey(Column... columns) {
         return withOptions(new PrimaryKey(columns.asList()));
     }
 
     public Table primaryKey(String... columns) {
         return withOptions(new PrimaryKey(columns));
+    }
+
+    public Table foreignKeys(ForeignKey... foreignKeys) {
+        return withOptions(foreignKeys);
+    }
+
+    public Table foreignKey(String name, Column[] columns, References otherSide) {
+        return withOptions(new ForeignKey(name).columns(columns).references(otherSide));
+    }
+
+    public Table foreignKey(String name, Column column, References otherSide) {
+        return foreignKey(name, new Column[] { column }, otherSide);
+    }
+
+    public Table foreignKey(String name, Column[] columns, Table otherSide) {
+        return withOptions(new ForeignKey(name).columns(columns).references(otherSide));
+    }
+
+    public Table foreignKey(String name, Column column, Table otherSide) {
+        return foreignKey(name, new Column[] { column }, otherSide);
     }
 
 }

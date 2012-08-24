@@ -8,6 +8,7 @@ import br.com.wolkenapps.jmigrations.model.commands.alter.actions.stereotypes.Ca
 import br.com.wolkenapps.jmigrations.model.commons.options.PrimaryKey;
 import br.com.wolkenapps.jmigrations.model.commons.stereotype.HasOptions;
 import br.com.wolkenapps.jmigrations.model.domain.columns.options.*;
+import br.com.wolkenapps.jmigrations.model.domain.foreignkeys.options.References;
 import br.com.wolkenapps.utils.ConfirmsThat;
 
 @RequiredArgsConstructor
@@ -17,13 +18,19 @@ public class Column implements HasOptions<Column>, CanBeRenamed {
 
     public static final class Utils {
         public static List<Column> createBasedOn(String... names) {
-            List<Column> all = new ArrayList<>();
-            for (String name : names) {
-                if (name.notIsNull()) {
-                    all.add(new Column(name));
+            return createArrayBasedOn(names).asList();
+        }
+
+        public static Column[] createArrayBasedOn(String... names) {
+            if (names.notIsEmpty()) {
+                Column[] columns = new Column[names.length];
+                int size = names.length;
+                for (int current = 0; current < size; current++) {
+                    columns[current] = new Column(names[current]);
                 }
+                return columns;
             }
-            return all;
+            return new Column[] {};
         }
     }
 
@@ -72,4 +79,11 @@ public class Column implements HasOptions<Column>, CanBeRenamed {
         return withOptions(new DefaultValue(value));
     }
 
+    public Column foreignKey(String name, References otherSide) {
+        return withOptions(new ForeignKey(name).column(this).references(otherSide));
+    }
+
+    public Column foreignKey(String name, Table otherSide) {
+        return withOptions(new ForeignKey(name).column(this).references(otherSide));
+    }
 }

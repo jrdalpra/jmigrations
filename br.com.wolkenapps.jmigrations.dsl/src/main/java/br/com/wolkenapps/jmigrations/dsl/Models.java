@@ -23,8 +23,20 @@ public final class Models {
         return new Column(name);
     }
 
+    public static Column[] columns(String... columns) {
+        return Column.Utils.createArrayBasedOn(columns);
+    }
+
+    public static Column[] columns(Column... columns) {
+        return columns;
+    }
+
     public static IndexColumn indexColumn(String name) {
         return new IndexColumn(name);
+    }
+
+    public static ForeignKey foreignKey(String name) {
+        return new ForeignKey(name);
     }
 
 }
