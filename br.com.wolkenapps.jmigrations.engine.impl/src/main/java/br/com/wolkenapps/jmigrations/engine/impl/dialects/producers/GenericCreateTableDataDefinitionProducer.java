@@ -1,8 +1,6 @@
 package br.com.wolkenapps.jmigrations.engine.impl.dialects.producers;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
 import br.com.wolkenapps.jmigrations.dsl.model.column.Column;

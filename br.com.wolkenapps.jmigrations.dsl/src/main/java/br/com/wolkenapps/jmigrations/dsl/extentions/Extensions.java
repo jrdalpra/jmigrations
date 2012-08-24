@@ -1,39 +1,39 @@
 package br.com.wolkenapps.jmigrations.dsl.extentions;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import br.com.wolkenapps.jmigrations.dsl.Options;
-import br.com.wolkenapps.jmigrations.dsl.model.column.Column;
-import br.com.wolkenapps.jmigrations.dsl.model.column.types.ColumnType;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseCascade;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseIfExists;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseIfNotExists;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.CanUseNotNull;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.stereotype.HasOptions;
+import br.com.wolkenapps.jmigrations.model.commons.stereotype.HasOptions;
+import br.com.wolkenapps.jmigrations.model.domain.Column;
+import br.com.wolkenapps.jmigrations.model.domain.DataType;
 
-public class Extensions {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class Extensions {
 
-    public static class Commons {
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static final class Columns_ {
 
-        public static Column as(String name, ColumnType type) {
+        public static Column as(String name, DataType type) {
             return new Column(name).type(type);
         }
 
     }
 
-    public static class Options_ {
-
-        public static <T extends CanUseIfExists & HasOptions<T>> T ifExists(T self) {
-            return self.withOptions(Options.Commons.ifExists());
-        }
-        
-        public static <T extends CanUseIfNotExists & HasOptions<T>> T ifNotExists(T self) {
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static final class Options_ {
+        public static <Self extends HasOptions<Self>> Self ifNotExists(Self self) {
             return self.withOptions(Options.Commons.ifNotExists());
         }
 
-        public static <T extends CanUseCascade & HasOptions<T>> T cascade(T self) {
+        public static <Self extends HasOptions<Self>> Self ifExists(Self self) {
+            return self.withOptions(Options.Commons.ifExists());
+        }
+
+        public static <Self extends HasOptions<Self>> Self cascade(Self self) {
             return self.withOptions(Options.Commons.cascade());
         }
 
-        public static <T extends CanUseNotNull & HasOptions<T>> T notNull(T self) {
+        public static <Self extends HasOptions<Self>> Self notNull(Self self) {
             return self.withOptions(Options.Commons.notNull());
         }
 
@@ -44,7 +44,6 @@ public class Extensions {
         public static Column primaryKey(Column self) {
             return self.withOptions(Options.Columns.primaryKeyColumn());
         }
-
     }
 
 }

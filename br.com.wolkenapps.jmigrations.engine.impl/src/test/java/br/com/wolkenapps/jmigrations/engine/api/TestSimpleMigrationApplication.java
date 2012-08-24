@@ -7,8 +7,7 @@ import lombok.experimental.ExtensionMethod;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
-import br.com.wolkenapps.jmigrations.api.Migration;
+import br.com.wolkenapps.jmigrations.api.*;
 import br.com.wolkenapps.jmigrations.dsl.extentions.Extensions;
 import br.com.wolkenapps.jmigrations.dsl.model.table.Table;
 import br.com.wolkenapps.jmigrations.engine.impl.SimpleDatabase;

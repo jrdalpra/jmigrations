@@ -1,13 +1,13 @@
 package br.com.wolkenapps.jmigrations.dsl;
 
+import java.util.Arrays;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import br.com.wolkenapps.jmigrations.dsl.model.column.options.Length;
-import br.com.wolkenapps.jmigrations.dsl.model.column.options.PrimaryKeyColumn;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.options.Cascade;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.options.IfExists;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.options.IfNotExists;
-import br.com.wolkenapps.jmigrations.dsl.model.commons.options.NotNull;
+import lombok.experimental.ExtensionMethod;
+import br.com.wolkenapps.jmigrations.model.commons.options.*;
+import br.com.wolkenapps.jmigrations.model.domain.Column;
+import br.com.wolkenapps.jmigrations.model.domain.columns.options.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Options {
@@ -37,8 +37,21 @@ public class Options {
             return new Length(length);
         }
 
-        public static PrimaryKeyColumn primaryKeyColumn() {
-            return new PrimaryKeyColumn();
+        public static PrimaryKey primaryKeyColumn() {
+            return new PrimaryKey();
+        }
+    }
+
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    @ExtensionMethod({ Arrays.class })
+    public static class Tables {
+
+        public static PrimaryKey primaryKey(Column... columns) {
+            return new PrimaryKey(columns.asList());
+        }
+
+        public static PrimaryKey primaryKey(String... columns) {
+            return new PrimaryKey(columns);
         }
     }
 

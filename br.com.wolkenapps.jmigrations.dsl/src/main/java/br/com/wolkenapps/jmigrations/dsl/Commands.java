@@ -1,19 +1,22 @@
 package br.com.wolkenapps.jmigrations.dsl;
 
-import br.com.wolkenapps.jmigrations.dsl.model.commands.CreateTable;
-import br.com.wolkenapps.jmigrations.dsl.model.commands.DropTable;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import br.com.wolkenapps.jmigrations.model.commands.*;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Commands {
 
-    private Commands() {
+    public static <Something> Create<Something> create(Something toBeCreated) {
+        return new Create<Something>(toBeCreated);
     }
 
-    public static CreateTable createTable(String name) {
-        return new CreateTable(name);
+    public static <Something> Alter<Something> alter(Something toBeChanged, AlterAction<?> action) {
+        return new Alter<Something>(toBeChanged, action);
     }
 
-    public static DropTable dropTable(String name) {
-        return new DropTable(name);
+    public static <Something> Drop<Something> drop(Something toBeDropped) {
+        return new Drop<Something>(toBeDropped);
     }
 
 }

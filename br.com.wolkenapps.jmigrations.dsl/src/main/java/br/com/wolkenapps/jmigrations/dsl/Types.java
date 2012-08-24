@@ -1,19 +1,19 @@
 package br.com.wolkenapps.jmigrations.dsl;
 
-import br.com.wolkenapps.jmigrations.dsl.model.column.types.LongColumnType;
-import br.com.wolkenapps.jmigrations.dsl.model.column.types.StringColumnType;
+import br.com.wolkenapps.jmigrations.model.domain.columns.types.LongDataType;
+import br.com.wolkenapps.jmigrations.model.domain.columns.types.StringDataType;
 
 public class Types {
 
     private Types() {
     }
 
-    public static StringColumnType string() {
-        return new StringColumnType();
+    public static StringDataType string() {
+        return new StringDataType();
     }
     
-    public static LongColumnType long_(){
-        return new LongColumnType();
+    public static LongDataType long_(){
+        return new LongDataType();
     }
 
 }

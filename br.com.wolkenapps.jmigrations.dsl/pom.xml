@@ -14,7 +14,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>br.com.wolkenapps.jmigrations</groupId>
-			<artifactId>br.com.wolkenapps.jmigrations.api</artifactId>
+			<artifactId>br.com.wolkenapps.jmigrations.model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

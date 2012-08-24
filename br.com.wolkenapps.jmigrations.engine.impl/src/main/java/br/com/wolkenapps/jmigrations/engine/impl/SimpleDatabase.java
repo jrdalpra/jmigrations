@@ -1,14 +1,9 @@
 package br.com.wolkenapps.jmigrations.engine.impl;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import lombok.Getter;
-import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
-import br.com.wolkenapps.jmigrations.api.Migration;
-import br.com.wolkenapps.jmigrations.dsl.model.DatabaseObject;
-import br.com.wolkenapps.jmigrations.engine.api.Database;
+import br.com.wolkenapps.jmigrations.api.*;
 import br.com.wolkenapps.jmigrations.engine.api.internal.DatabaseCommandApplier;
 
 public class SimpleDatabase implements Database {
@@ -45,7 +40,7 @@ public class SimpleDatabase implements Database {
     }
 
     @Override
-    public Boolean contains(DatabaseObject object) {
+    public Boolean contains(Object object) {
         return true; // TODO
     }
 
