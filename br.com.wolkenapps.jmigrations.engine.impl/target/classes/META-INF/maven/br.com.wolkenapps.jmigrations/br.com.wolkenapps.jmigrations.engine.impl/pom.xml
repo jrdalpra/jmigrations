@@ -10,13 +10,16 @@
 
 	<groupId>br.com.wolkenapps.jmigrations</groupId>
 	<artifactId>br.com.wolkenapps.jmigrations.engine.impl</artifactId>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.wolkenapps.jmigrations</groupId>
-			<artifactId>
-				br.com.wolkenapps.jmigrations.engine.api
-			</artifactId>
+			<artifactId>br.com.wolkenapps.jmigrations.engine.api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.wolkenapps.jmigrations</groupId>
+			<artifactId>br.com.wolkenapps.jmigrations.dsl</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

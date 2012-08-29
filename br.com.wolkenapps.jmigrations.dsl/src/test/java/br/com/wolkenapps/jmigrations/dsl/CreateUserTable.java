@@ -13,7 +13,7 @@ import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
 import br.com.wolkenapps.jmigrations.api.Migration;
 
 @SuppressWarnings("unused")
-public class CreateUserTable implements Migration {
+public class CreateUserTable/* _24082012_171630_rony */implements Migration {
 
     @Override
     public DatabaseCommand[] up() {
