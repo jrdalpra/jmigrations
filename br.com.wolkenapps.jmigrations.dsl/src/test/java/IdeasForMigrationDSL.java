@@ -9,6 +9,13 @@ import static br.com.wolkenapps.jmigrations.dsl.Types.*;
 import lombok.experimental.ExtensionMethod;
 import br.com.wolkenapps.jmigrations.api.*;
 import br.com.wolkenapps.jmigrations.dsl.extentions.Extensions;
+import br.com.wolkenapps.jmigrations.model.commands.predicates.Predicate;
+import br.com.wolkenapps.jmigrations.model.commands.predicates.Where;
+import br.com.wolkenapps.jmigrations.model.commands.predicates.operators.And;
+import br.com.wolkenapps.jmigrations.model.domain.columns.options.Precision;
+import static br.com.wolkenapps.jmigrations.dsl.Restrictions.*;
+import static br.com.wolkenapps.jmigrations.dsl.Restrictions.Predicates.*;
+import static br.com.wolkenapps.jmigrations.dsl.Restrictions.Operators.*;
 
 public class IdeasForMigrationDSL {
 
@@ -61,10 +68,18 @@ public class IdeasForMigrationDSL {
         // update("user").set("login", "teste").where("id", Is.greaterThan(10));
         // update("user").set("senha", "").where("id", Is.in()); // ??
 
-        // deleteFrom("user").where("id",equals(),1)
-        //                   .and("login",startsWith(),"admin")
-        //                   .or("login",endsWith(),"user")
-        
+        // deleteFrom("user",where("id",equals(),1).and("login",startsWith(),"admin").or("login",endsWith(),"user"))
+
+        // isEquals("id",10)
+        // notEquals("id",10)
+        // where(equals("id",10).and())
+
+        // deleteFrom("user",where("id",Is.equals(10)).and());
+
+        new Predicate("id", equalsTo(), null);
+
+        deleteFrom("user", where("id", equalsTo(), 10).and("id", equalsTo(), 11));
+
         // TODO think: a migration is unique by data / time / user ... but we can have several date/time locales
         // or diferente migration's name conventions ...
         // CreateUsers_20120823_115023_jrdalpra and

@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import br.com.wolkenapps.jmigrations.model.commands.*;
 import br.com.wolkenapps.jmigrations.model.commands.alter.AlterAction;
+import br.com.wolkenapps.jmigrations.model.commands.predicates.Where;
 import br.com.wolkenapps.jmigrations.model.domain.Table;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -27,6 +28,14 @@ public final class Commands {
 
     public static InsertInto insertInto(String target) {
         return new InsertInto(target);
+    }
+
+    public static DeleteFrom deleteFrom(Table target, Where clause) {
+        return new DeleteFrom(target, clause);
+    }
+
+    public static DeleteFrom deleteFrom(String target, Where clause) {
+        return new DeleteFrom(target, clause);
     }
 
 }
