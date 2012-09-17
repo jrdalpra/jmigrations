@@ -10,6 +10,6 @@ import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
  */
 public interface Dialect {
 
-    String producesDDLFor(DatabaseCommand command);
+    String producesARepresentationFor(DatabaseCommand command);
 
 }

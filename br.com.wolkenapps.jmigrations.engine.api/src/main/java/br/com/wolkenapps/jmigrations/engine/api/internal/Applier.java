@@ -8,10 +8,15 @@ import br.com.wolkenapps.jmigrations.api.DatabaseCommand;
  * @author jose.junior
  * 
  */
-public interface DatabaseCommandApplier {
+public interface Applier {
 
     boolean accepts(DatabaseCommand toBeApplied);
 
+    /**
+     * Applies some {@link DatabaseCommand}
+     * 
+     * @param toBeApplied
+     */
     <CommandType extends DatabaseCommand> void applies(CommandType toBeApplied);
 
 }
