@@ -63,3 +63,7 @@ Or using lombok extension methods
 
 # We are accepting more features
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jrdalpra/jmigrations/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
